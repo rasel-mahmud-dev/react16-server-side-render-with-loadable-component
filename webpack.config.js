@@ -77,7 +77,7 @@ const serverConfig = {
   output: {
     path: path.join(__dirname, "build"),
     filename: "server.js",
-    libraryTarget: "commonjs2"
+    // libraryTarget: "commonjs2"
   },
   // devtool: "cheap-module-source-map",
   resolve: {
