@@ -58,8 +58,7 @@ const browserConfig = {
           {
             loader: "file-loader",
             options: {
-              name: "[name].[hash].[ext]",
-              outputPath: "static/media",
+              name: "/static/media/[name].[ext]"    
             }
           }
         ]
@@ -116,10 +115,9 @@ const serverConfig = {
           {
             loader: "file-loader",
             options: {
-              name: "[name].[hash].[ext]",
-              outputPath: "static/media",
-              // publicPath: url => url.replace(/public/, ""),
-              emit: false
+              name: "static/media/[name].[ext]",
+              // outputPath: "static/media",          
+              emitFile: false  // no write file.
             }
           }
         ]

@@ -1,6 +1,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter, matchPath } from 'react-router-dom'
+import serialize  from 'serialize-javascript'
 import App from '../shared/App'
 import routes from '../shared/routes'
 
@@ -8,9 +9,8 @@ import 'isomorphic-fetch'
 
 import express from 'express'
 
-
 const app = express()
-app.use(express.static('build/static'))
+app.use("/static", express.static('build/static'))
 
 app.get('/api/users', (req, res, next)=>{
   res.send([
@@ -56,9 +56,9 @@ app.get('*', async(req, res, next)=>{
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Server side render App</title>
-      <link rel="stylesheet" href="/css/main.css">
-      <script src="/js/bundle.js" defer></script>
-      <script>window.__initialData__ = ${JSON.stringify(initialData)}</script>
+      <link rel="stylesheet" href="/static/css/main.css">
+      <script src="/static/js/bundle.js" defer></script>
+      <script>window.__initialData__ = ${serialize(initialData)}</script>
     </head>
     <body>
       <div id="root">${markup}</div>

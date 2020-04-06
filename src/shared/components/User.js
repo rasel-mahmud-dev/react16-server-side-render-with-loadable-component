@@ -1,6 +1,8 @@
 import React from "react";
 
-import axios from "axios";
+import pic from '../../asserts/images/pic2.jpg'
+
+
 import "isomorphic-fetch";
 
 class User extends React.Component {
@@ -32,6 +34,7 @@ class User extends React.Component {
     return (
       <div className="">
         <h1>ALl User List</h1>
+        <img src={pic}/>
         { this.state.users &&
           this.state.users.length > 0 &&
           this.state.users.map((user, i) => <li key={i}>{user.name}</li>)}
