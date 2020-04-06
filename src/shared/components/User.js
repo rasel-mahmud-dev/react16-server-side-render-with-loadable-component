@@ -22,12 +22,10 @@ class User extends React.Component {
       .then(response=> response.json())
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/api/users')
-    .then(response=> response.json())
-    .then(users=>{
-      this.setState({users})
-    })
+  componentDidMount() {    
+    if(!this.state.users){            
+      User.requestInitialData().then(users=>this.setState({users}))
+    } 
   }
 
   render() {

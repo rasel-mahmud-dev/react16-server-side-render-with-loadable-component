@@ -13,10 +13,9 @@ class News extends React.Component {
       delete window.__initialData__;
     }
     this.state={
-      news: initialData || []
+      news: initialData
     }
   }
-  
 
   static requestInitialData(){
     return fetch('http://localhost:3000/api/news')
@@ -25,13 +24,10 @@ class News extends React.Component {
 
   // when render browser side react
   componentDidMount() {
-    fetch('http://localhost:3000/api/news')
-    .then(response=> response.json())
-    .then(news=>{
-      this.setState({news})
-    })
+    if(!this.state.news){
+      News.requestInitialData().then((news)=> this.setState({news}) )
+    }
   }
-  
 
   render() {
     return (
