@@ -1,11 +1,15 @@
 import React from "react";
+import { Switch, Route, NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+
 import "./App.css";
 
-import { Switch, Route, NavLink } from 'react-router-dom'
 
 
 import routes from './routes'
-const App = () => {
+
+const App = (props) => {
+
   return (
       <div className="App">
         <h1>This is App</h1>
@@ -18,6 +22,10 @@ const App = () => {
         </Switch>
       </div>
     );
-  }
+}
 
-export default App;
+function mapStateToProps(state){
+  return state
+}
+
+export default connect(mapStateToProps)(App)

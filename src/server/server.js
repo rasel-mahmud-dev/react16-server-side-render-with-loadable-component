@@ -5,6 +5,9 @@ import serialize  from 'serialize-javascript'
 import App from '../shared/App'
 import routes from '../shared/routes'
 
+import { Provider } from 'react-redux'
+import configStore  from '../store'
+
 import 'isomorphic-fetch'
 
 import express from 'express'
@@ -26,47 +29,53 @@ app.get('/api/news', (req, res, next)=>{
 
 
 
-app.get('*', async(req, res, next)=>{
-  
-  // get this type route ==> { path: '/', component: [Function: User], exact: true }
-  let currentRoute = routes.find(route=> matchPath(req.url, route))
+app.get('*', async(req, res, next)=>{ 
 
-  // take initialData return and static requestInitialData call from every component......
-  let requestInitialData;
-  if(currentRoute){
-    // console.log(currentRoute);
-    requestInitialData = currentRoute.component.requestInitialData && currentRoute.component.requestInitialData()
-  }
+  const store = configStore()
+  const promises = routes.reduce((acc, route)=>{    
+    if(matchPath(req.url, route) && route.component && route.component.initialAction) {  
+      // initial data fetch and dispath all initialAction our component.. and store fullfill.
+      acc.push(Promise.resolve(store.dispatch(route.component.initialAction()))) 
+    }
+    return acc
+  }, [])
 
-  let initialData = await Promise.resolve(requestInitialData)
-  const context = { initialData }  // send component current url match like => props.staticContext = { initialData: [{}] } 
+  Promise.all(promises)
+    .then((result)=>{
+      // console.log(result);
+      let markup = renderToString(
+        <Provider store={store}>
+          <StaticRouter location={req.url} context={{}} >
+            <App/>
+          </StaticRouter> 
+        </Provider>
+       )
+        
+      // already state full fill...... 
+      // now send this data from client/browser side store. 
+      let initialData = store.getState();
+      
+      const templete = `
+      <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          <title>Server side render App</title>
+          <link rel="stylesheet" href="/static/css/main.css">
+          <script src="/static/js/bundle.js" defer></script>
+          <script>window.__initialData__ = ${serialize(initialData)}</script>
+        </head>
+        <body>
+          <div id="root">${markup}</div>
+        </body>
+        </html>
+      `
+      res.send(templete)
 
-  let markup = renderToString(
-    <StaticRouter location={req.url} context={context} >
-      <App initialData={initialData} />
-    </StaticRouter> 
-   )
-
-
-  const templete = `
-  <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Server side render App</title>
-      <link rel="stylesheet" href="/static/css/main.css">
-      <script src="/static/js/bundle.js" defer></script>
-      <script>window.__initialData__ = ${serialize(initialData)}</script>
-    </head>
-    <body>
-      <div id="root">${markup}</div>
-    </body>
-    </html>
-  `
-
-  res.send(templete)
+    })
+    .catch(next)
 })
 
 

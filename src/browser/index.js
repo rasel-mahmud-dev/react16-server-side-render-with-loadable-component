@@ -1,12 +1,19 @@
 import React from "react";
 import { hydrate } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import App from "../shared/App";
 
+import configStore from '../store'
+
+const store = configStore(window.__initialData__)
+
 hydrate(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.querySelector("#root")
 );
