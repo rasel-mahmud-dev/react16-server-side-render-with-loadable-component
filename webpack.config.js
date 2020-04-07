@@ -3,6 +3,7 @@ const resolve = require("resolve");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const nodeExternals = require('webpack-node-externals');
+const LoadablePlugin = require('@loadable/webpack-plugin')
 
 const browserConfig = {
   mode: process.env.NODE_ENV,
@@ -11,38 +12,40 @@ const browserConfig = {
   output: {
     path: path.join(__dirname, "build"),
     filename: "static/js/bundle.js",
-    chunkFilename: "static/js/[name].chunk.js"
+    // chunkFilename: "static/js/[name].chunk.js"
   },
   resolve: {
     extensions: ["*", ".js", ".jsx"]
   },
   optimization: {
-    nodeEnv: false,
     splitChunks: {
-        chunks: 'all',
-        minSize: 30000,
-        minChunks: 1,
-        maxAsyncRequests: 5,
-        maxInitialRequests: 3,
-        automaticNameDelimiter: '~',
-        name: true,
-        cacheGroups: {
-            vendors: {
-                test: /[\\/]node_modules[\\/]/,
-                priority: -10
-            },
-            default: {
-                minChunks: 2,
-                priority: -20,
-                reuseExistingChunk: true
-            }
+      chunks: 'all',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 6,
+      maxInitialRequests: 4,
+      automaticNameDelimiter: '~',
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+          name: 'vendors'
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
         }
+      }
     }
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "static/css/[name].css"
-    })
+    }),
+    new LoadablePlugin()
   ],
   module: {
     rules: [
@@ -56,7 +59,8 @@ const browserConfig = {
               presets: ["@babel/preset-env", "@babel/preset-react"],
               plugins: [
                 "@babel/plugin-proposal-class-properties",
-                "@babel/plugin-transform-runtime"
+                "@babel/plugin-transform-runtime",
+                "@loadable/babel-plugin"
               ]
             }
           }
@@ -123,7 +127,8 @@ const serverConfig = {
               presets: ["@babel/preset-env", "@babel/preset-react"],
               plugins: [
                 "@babel/plugin-proposal-class-properties",
-                "@babel/plugin-transform-runtime"
+                "@babel/plugin-transform-runtime",
+                "@loadable/babel-plugin"
               ]
             }
           }

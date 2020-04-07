@@ -1,9 +1,13 @@
+import React from 'react'
+import loadable from '@loadable/component'
 
-import News from './components/News'
-import User from './components/User'
-import HomePage from './pages/HomePage'
-import UserPage from './pages/UserPage'
-import AboutPage from './pages/AboutPage'
+import Loader from './components/Loader/Loader'
+
+const News = loadable(()=>import('./components/News'),{fallback: <Loader/>})
+const User = loadable(()=>import('./components/User'),{fallback: <Loader/>})
+const HomePage = loadable(()=>import('./pages/HomePage'),{fallback: <Loader/>})
+const UserPage = loadable(()=>import('./pages/UserPage'),{fallback: <Loader/>})
+const AboutPage = loadable(()=>import('./pages/AboutPage'),{fallback: <Loader/>})
 
 
 const routes = [

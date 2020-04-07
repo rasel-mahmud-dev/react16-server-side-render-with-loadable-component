@@ -1,0 +1,38 @@
+
+
+.navbar{
+  background: rgba(255, 121, 121, 0.664);
+  user-select: none;
+
+}
+.nav{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.nav .nav-item{
+  margin-right: 20px;
+}
+
+.nav .nav-item a{
+  text-decoration: none;
+  font-family: abel;
+  font-weight: 500;
+  color: #424242;
+  min-width: 65px;
+  display: inline-block;
+  padding: 8px 0px;
+  font-size: 17px;
+}
+.nav .nav-item a:hover{
+  font-weight: 700;
+  color: #c0c0c0;
+}
+
+.nav .nav-item a.active{
+  font-weight: 700;
+  color: #ffffff;
+}

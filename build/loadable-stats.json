@@ -1,0 +1,284 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.42.1",
+  "hash": "d6e819383bf78ab9b695",
+  "publicPath": "",
+  "outputPath": "C:\\Users\\RaseL\\Desktop\\server side render\\build",
+  "assetsByChunkName": {
+    "components-News": "static/js/components-News.bundle.js",
+    "components-User": "static/js/components-User.bundle.js",
+    "main": [
+      "static/css/main.css",
+      "static/js/bundle.js"
+    ],
+    "pages-AboutPage": [
+      "static/css/pages-AboutPage.css",
+      "static/js/pages-AboutPage.bundle.js"
+    ],
+    "pages-HomePage": "static/js/pages-HomePage.bundle.js",
+    "pages-UserPage": "static/js/pages-UserPage.bundle.js",
+    "vendors": "static/js/vendors.bundle.js"
+  },
+  "assets": [
+    {
+      "name": "static/css/main.css",
+      "size": 1336,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/css/pages-AboutPage.css",
+      "size": 91,
+      "chunks": [
+        "pages-AboutPage"
+      ],
+      "chunkNames": [
+        "pages-AboutPage"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/js/bundle.js",
+      "size": 39076,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/js/components-News.bundle.js",
+      "size": 5840,
+      "chunks": [
+        "components-News"
+      ],
+      "chunkNames": [
+        "components-News"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/js/components-User.bundle.js",
+      "size": 6756,
+      "chunks": [
+        "components-User"
+      ],
+      "chunkNames": [
+        "components-User"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/js/pages-AboutPage.bundle.js",
+      "size": 5575,
+      "chunks": [
+        "pages-AboutPage"
+      ],
+      "chunkNames": [
+        "pages-AboutPage"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/js/pages-HomePage.bundle.js",
+      "size": 5506,
+      "chunks": [
+        "pages-HomePage"
+      ],
+      "chunkNames": [
+        "pages-HomePage"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/js/pages-UserPage.bundle.js",
+      "size": 4773,
+      "chunks": [
+        "pages-UserPage"
+      ],
+      "chunkNames": [
+        "pages-UserPage"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/js/vendors.bundle.js",
+      "size": 1307855,
+      "chunks": [
+        "vendors"
+      ],
+      "chunkNames": [
+        "vendors"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/pic2.jpg",
+      "size": 14841,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        "vendors",
+        "main"
+      ],
+      "assets": [
+        "static/js/vendors.bundle.js",
+        "static/css/main.css",
+        "static/js/bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "chunks": [
+        "vendors",
+        "main"
+      ],
+      "assets": [
+        "static/js/vendors.bundle.js",
+        "static/css/main.css",
+        "static/js/bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "components-News": {
+      "chunks": [
+        "vendors",
+        "components-News"
+      ],
+      "assets": [
+        "static/js/vendors.bundle.js",
+        "static/js/components-News.bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "components-User": {
+      "chunks": [
+        "vendors",
+        "components-User"
+      ],
+      "assets": [
+        "static/js/vendors.bundle.js",
+        "static/js/components-User.bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "pages-HomePage": {
+      "chunks": [
+        "vendors",
+        "pages-HomePage"
+      ],
+      "assets": [
+        "static/js/vendors.bundle.js",
+        "static/js/pages-HomePage.bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "pages-UserPage": {
+      "chunks": [
+        "vendors",
+        "pages-UserPage"
+      ],
+      "assets": [
+        "static/js/vendors.bundle.js",
+        "static/js/pages-UserPage.bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "pages-AboutPage": {
+      "chunks": [
+        "vendors",
+        "pages-AboutPage"
+      ],
+      "assets": [
+        "static/js/vendors.bundle.js",
+        "static/css/pages-AboutPage.css",
+        "static/js/pages-AboutPage.bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 5,
+      "debug": false
+    }
+  },
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "",
+      "outputPath": "C:\\Users\\RaseL\\Desktop\\server side render\\build",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            "mini-css-extract-plugin"
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            "mini-css-extract-plugin"
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin ../server side render\\node_modules\\css-loader\\dist\\cjs.js!../server side render\\src\\shared\\components\\Loader\\Loader.css"
+    }
+  ]
+}

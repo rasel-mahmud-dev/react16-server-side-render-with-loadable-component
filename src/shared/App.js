@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import "./App.css";
 
 
+import Navigation from './components/Navigation/Navigation'
 
 import routes from './routes'
 
@@ -12,14 +13,7 @@ const App = (props) => {
 
   return (
       <div className="App">
-        <h1>This is App</h1>
-        <NavLink to="/" >Home</NavLink>
-        <NavLink to="/user" >User</NavLink>
-        <NavLink to="/news" >news</NavLink>
-        <NavLink to="/user-page" >UserPage</NavLink>
-        <NavLink to="/about-page" >About</NavLink>
-        <br/>
-        
+        <Navigation/>
         <Switch>
           { routes.map(((route, i)=> <Route key={i} {...route} /> ))}
         </Switch>
