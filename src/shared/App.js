@@ -13,8 +13,11 @@ const App = (props) => {
   return (
       <div className="App">
         <h1>This is App</h1>
-        <NavLink to="/" >user</NavLink>
+        <NavLink to="/" >Home</NavLink>
+        <NavLink to="/user" >User</NavLink>
         <NavLink to="/news" >news</NavLink>
+        <NavLink to="/user-page" >UserPage</NavLink>
+        <NavLink to="/about-page" >About</NavLink>
         <br/>
         
         <Switch>

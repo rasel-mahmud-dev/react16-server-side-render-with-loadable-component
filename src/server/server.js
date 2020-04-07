@@ -1,4 +1,5 @@
 import React from 'react'
+import fs from 'fs'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter, matchPath } from 'react-router-dom'
 import serialize  from 'serialize-javascript'
@@ -28,9 +29,7 @@ app.get('/api/news', (req, res, next)=>{
 })
 
 
-
 app.get('*', async(req, res, next)=>{ 
-
   const store = configStore()
   const promises = routes.reduce((acc, route)=>{    
     if(matchPath(req.url, route) && route.component && route.component.initialAction) {  
@@ -54,6 +53,9 @@ app.get('*', async(req, res, next)=>{
       // already state full fill...... 
       // now send this data from client/browser side store. 
       let initialData = store.getState();
+
+      let jsfiles = fs.readdirSync('build/static/js')
+      let cssfiles = fs.readdirSync('build/static/css')
       
       const templete = `
       <!DOCTYPE html>
@@ -62,9 +64,9 @@ app.get('*', async(req, res, next)=>{
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          <title>Server side render App</title>
-          <link rel="stylesheet" href="/static/css/main.css">
-          <script src="/static/js/bundle.js" defer></script>
+          <title>Server side render App</title>    
+          ${jsfiles.map(js=>`<script src="/static/js/${js}" defer ></script>`)}
+          ${cssfiles.map(css=>`<link rel="stylesheet" href="/static/css/${css}"/>`)}
           <script>window.__initialData__ = ${serialize(initialData)}</script>
         </head>
         <body>
@@ -73,10 +75,15 @@ app.get('*', async(req, res, next)=>{
         </html>
       `
       res.send(templete)
-
     })
     .catch(next)
 })
 
 
+
 app.listen(3000, ()=>console.log("server is listening on port 3000"))
+
+
+
+
+

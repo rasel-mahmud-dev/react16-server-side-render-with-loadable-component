@@ -10,10 +10,34 @@ const browserConfig = {
   // devtool: "cheap-module-source-map",
   output: {
     path: path.join(__dirname, "build"),
-    filename: "static/js/bundle.js"
+    filename: "static/js/bundle.js",
+    chunkFilename: "static/js/[name].chunk.js"
   },
   resolve: {
     extensions: ["*", ".js", ".jsx"]
+  },
+  optimization: {
+    nodeEnv: false,
+    splitChunks: {
+        chunks: 'all',
+        minSize: 30000,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+            vendors: {
+                test: /[\\/]node_modules[\\/]/,
+                priority: -10
+            },
+            default: {
+                minChunks: 2,
+                priority: -20,
+                reuseExistingChunk: true
+            }
+        }
+    }
   },
   plugins: [
     new MiniCssExtractPlugin({

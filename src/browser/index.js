@@ -17,3 +17,10 @@ hydrate(
   </Provider>,
   document.querySelector("#root")
 );
+
+
+
+
+// console.log(window.document.body.innerHTML.replace(/<\/script>,/g, '</script>'));
+
+
